@@ -14,10 +14,10 @@
     <!-- 六宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/newList">
           <img src="../../assets/menu1.png" alt="">
           <div class="mui-media-body">新闻资讯</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
@@ -70,9 +70,9 @@
       getBanner() {
         //获取轮播图数据的方法
         this.$http
-          .get("http://vue.lovegf.cn:8899/api/getlunbo")
+          .get("http://www.lovegf.cn:8899/api/getlunbo")
           .then(result => {
-            //     console.log(result.body)
+                // console.log(result.body)
             if (result.body.status == 0) {
               //成功
               this.bannerList = result.body.message;
