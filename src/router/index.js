@@ -4,7 +4,8 @@ import homeComponent from '../page/home/'
 import membleComponent from '../page/memble/'
 import shopcarComponent from '../page/shopcar/'
 import seachComponent from '../page/search/'
-import newListComponent from '../page/new/newList.vue'
+import newListComponent from '../page/new/newList'
+import newInfoComponent from '../page/new/newInfo'
 Vue.use(Router)
 
 export default new Router({
@@ -14,7 +15,8 @@ export default new Router({
     {path:"/shopcar",component:shopcarComponent},
     {path:"/search",component:seachComponent},
     {path:"/",redirect:'/home'},
-    {path:'/home/newList',component:newListComponent}
+    {path:'/home/newList',component:newListComponent},
+    {path:'/home/newInfo/:newid',component:newInfoComponent}
   ],
   linkActiveClass:'mui-active'
 })

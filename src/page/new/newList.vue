@@ -3,7 +3,7 @@
         <!-- <h1>新闻列表页</h1> -->
         <ul class="mui-table-view">
             <li class="mui-table-view-cell mui-media" v-for="item in newList" :key="item.id">
-                <a href="javascript:;">
+                <router-link :to="'/home/newInfo/'+item.id">
                     <img class="mui-media-object mui-pull-left" :src="item.img_url">
                     <div class="mui-media-body">
                         <h4 class='mui-ellipsis'>{{ item.title }}</h4>
@@ -12,7 +12,7 @@
                             <span class="star mui-pull-right">点击:{{ item.click}}次</span>
                         </p>
                     </div>
-                </a>
+                </router-link>
             </li>
 	    </ul>
     </div>
