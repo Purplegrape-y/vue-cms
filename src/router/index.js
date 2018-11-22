@@ -6,6 +6,7 @@ import shopcarComponent from '../page/shopcar/'
 import seachComponent from '../page/search/'
 import newListComponent from '../page/new/newList'
 import newInfoComponent from '../page/new/newInfo'
+import photoCategoryComponent from '../page/photo/photoCategory'
 Vue.use(Router)
 
 export default new Router({
@@ -16,7 +17,8 @@ export default new Router({
     {path:"/search",component:seachComponent},
     {path:"/",redirect:'/home'},
     {path:'/home/newList',component:newListComponent},
-    {path:'/home/newInfo/:newid',component:newInfoComponent}
+    {path:'/home/newInfo/:newid',component:newInfoComponent},
+    {path:'/home/photoCategory',component:photoCategoryComponent}
   ],
   linkActiveClass:'mui-active'
 })

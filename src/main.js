@@ -33,6 +33,7 @@ Vue.component(Button.name, Button)
 import './lib/mui/css/mui.css'
 // 导入扩展图标样式
 import './lib/mui/css/icons-extra.css'
+import mui from './lib/mui/js/mui.js'
 
 //引入自己的样式
 import './common/css/base.css'
