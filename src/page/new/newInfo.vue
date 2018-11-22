@@ -7,14 +7,21 @@
         </p>
         <hr>
         <div class="content" v-html= 'newInfo.content'></div>
+
+        <!-- 评论区域子组件 -->
+        <commentList :id="id"></commentList>
     </div>
+
 </template>
 
 <script>
+// 1. 导入 评论子组件
+import commentList from '../../components/comment/'
+
 export default {
     data(){
         return {
-            newid:this.$route.params.newid,
+            id:this.$route.params.newid,
             newInfo:[]
         }
     },
@@ -23,14 +30,16 @@ export default {
     },
     methods:{
         getNewInfo(){
-            this.$http.get('api/getnew/'+ this.newid).then(result => {
+            this.$http.get('api/getnew/'+ this.id).then(result => {
                 if(result.body.status == 0){
                     this.newInfo = result.body.message[0]
-                    console.log(this.newInfo)
                    
                 }
             })
         }
+    },
+    components:{
+        commentList
     }
 }
 </script>

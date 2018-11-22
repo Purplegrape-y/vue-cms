@@ -17,10 +17,11 @@ Vue.filter("dateFormat",(dateStr,pattern) => {
 Vue.http.options.root = 'http://www.lovegf.cn:8899/';
 
 //引入header组件
-import {Header,Swipe, SwipeItem } from 'mint-ui'
+import {Header,Swipe, SwipeItem,Button } from 'mint-ui'
 Vue.component(Header.name, Header)
 Vue.component(Swipe.name, Swipe)
 Vue.component(SwipeItem.name, SwipeItem)
+Vue.component(Button.name, Button)
 
 //引入mui
 import './lib/mui/css/mui.css'

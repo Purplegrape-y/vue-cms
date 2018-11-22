@@ -39,7 +39,7 @@
 
 <style lang='less'>
   #app-container {
-    padding-top: 40px;
+    padding: 40px 0 60px 0;
     overflow-x: hidden;
     .v-enter,{
       opacity: 0;
