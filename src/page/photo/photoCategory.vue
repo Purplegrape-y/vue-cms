@@ -3,12 +3,24 @@
         <div id="slider" class="mui-slider">
             <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
                 <div class="mui-scroll">
-                    <a :class="{'mui-control-item':true, 'mui-active':item.id == 0}" v-for="item in photoCategory" :key="item.id">
+                    <a :class="{'mui-control-item':true, 'mui-active':item.id == 0}" v-for="item in photoCategory" :key="item.id" @click="getPhotoList(item.id)">
                         {{item.title}}
                     </a>
                 </div>
             </div>
 		</div>
+
+        <!-- 图片列表区域 -->
+        <ul class="photo-list">
+            <router-link v-for="item in photoList" :key="item.id" :to="'/home/photoinfo/' + item.id" tag="li">
+                <img src="item.img_url">
+                <div class="info">
+                <h1 class="info-title">{{ item.title }}</h1>
+                <div class="info-body">{{ item.zhaiyao }}</div>
+                </div>
+            </router-link>
+        </ul>
+
     </div>
 </template>
 
@@ -19,7 +31,8 @@ import mui from '../../lib/mui/js/mui.js'
 export default {
     data(){
         return{
-            photoCategory:[]
+            photoCategory:[],
+            photoList:[]
         }
     },
     methods:{
@@ -32,10 +45,20 @@ export default {
                     // console.log(this.photoCategory)
                 }
             })
+        },
+        getPhotoList(cateId){
+            this.$http.get('api/getimages/'+cateId).then(result => {
+                if(result.body.status == 0){
+                    this.photoList = result.body.message
+                    console.log(this.photoList)
+                }
+
+            })
         }
     },
     created(){
         this.getPhotoCategory()
+        this.getPhotoList(0)
     },
     mounted(){
         mui('.mui-scroll-wrapper').scroll({
