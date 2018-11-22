@@ -17,7 +17,7 @@
           </div>
         </div>
 
-        <mt-button type="danger" size="large" plain >加载更多</mt-button> 
+        <mt-button type="danger" size="large" plain @click = "getMore">加载更多</mt-button> 
     </div>
 </template>
 
@@ -36,10 +36,15 @@ export default {
         getComment(){
             this.$http.get('api/getcomments/'+this.id+'?pageindex= '+ this.pageIndex).then(result => {
                 if(result.body.status == 0){
-                    this.commentList = result.body.message
+                    this.commentList = this.commentList.concat(result.body.message)
                     console.log(this.commentList)
+
                 }
             })
+        },
+        getMore(){
+            this.pageIndex++
+            this.getComment()
         }
     },
     props: ["id"]
