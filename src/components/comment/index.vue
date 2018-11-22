@@ -2,12 +2,12 @@
     <div class="comment-container">
         <h4>评论专区</h4>
         <hr>
-        <textarea placeholder="请输入要BB的内容（做多吐槽120字）" maxlength="120"></textarea>
+        <textarea placeholder="请输入要BB的内容（做多吐槽120字）" maxlength="120" v-model="msg"></textarea>
 
-        <mt-button type="primary" size="large">发表评论</mt-button>
+        <mt-button type="primary" size="large" @click="postComment" >发表评论</mt-button>
 
         <div class="cmt-list">
-          <div class="cmt-item" v-for="(item, i) in commentList" :key="item.add_time">
+          <div class="cmt-item" v-for="(item, i) in commentList" :key="i">
             <div class="cmt-title">
               第{{ i+1 }}楼&nbsp;&nbsp;用户：{{ item.user_name }}&nbsp;&nbsp;发表时间：{{ item.add_time | dateFormat('YYYY-MM-DD') }}
             </div>
@@ -22,11 +22,13 @@
 </template>
 
 <script>
+import {Toast} from "mint-ui"
 export default {
     data(){
         return {
            pageIndex:1,
-           commentList:[]
+           commentList:[],
+           msg:''
         }
     },
     created(){
@@ -45,6 +47,23 @@ export default {
         getMore(){
             this.pageIndex++
             this.getComment()
+        },
+        postComment(){
+
+             // 校验是否为空内容
+            if (this.msg.trim().length === 0) {
+                return Toast("评论内容不能为空！");
+            }
+
+            this.$http.post('api/postcomment/'+this.id,{content:this.msg}).then(result =>{
+                if(result.body.status == 0){
+                    this.pageIndex = 1
+                    this.commentList = []
+                    this.getComment()
+                    this.msg = ''
+                    return Toast(result.body.message)
+                }
+            })
         }
     },
     props: ["id"]
@@ -53,8 +72,11 @@ export default {
 
 <style lang="less">
  .comment-container{
-    h3 {
+    h4 {
+        text-align: center;
+        font-weight: 700;
         font-size: 18px;
+        margin-top:10px;
     }
     textarea {
         font-size: 14px;

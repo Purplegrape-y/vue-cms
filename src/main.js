@@ -3,8 +3,14 @@ import Vue from 'vue'
 import App from './App'
 //导入路由模块
 import router from './router'
+
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
+
+//设置接口跟路径
+Vue.http.options.root = 'http://www.lovegf.cn:8899/';
+//设置表单数据提交格式
+Vue.http.options.emulateHTTP = true;
 
 //导入moment模块
 import moment from 'moment'
@@ -14,7 +20,7 @@ Vue.filter("dateFormat",(dateStr,pattern) => {
     return moment(dateStr).format(pattern)
 })
 
-Vue.http.options.root = 'http://www.lovegf.cn:8899/';
+
 
 //引入header组件
 import {Header,Swipe, SwipeItem,Button } from 'mint-ui'
