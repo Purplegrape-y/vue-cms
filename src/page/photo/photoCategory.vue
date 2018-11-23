@@ -13,10 +13,10 @@
         <!-- 图片列表区域 -->
         <ul class="photo-list">
             <router-link v-for="item in photoList" :key="item.id" :to="'/home/photoinfo/' + item.id" tag="li">
-                <img src="item.img_url">
+                <img v-lazy="item.img_url">
                 <div class="info">
-                <h1 class="info-title">{{ item.title }}</h1>
-                <div class="info-body">{{ item.zhaiyao }}</div>
+                    <h1 class="info-title">{{ item.title }}</h1>
+                    <div class="info-body">{{ item.zhaiyao }}</div>
                 </div>
             </router-link>
         </ul>
@@ -61,9 +61,10 @@ export default {
         this.getPhotoList(0)
     },
     mounted(){
-        mui('.mui-scroll-wrapper').scroll({
-            deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
-        });
+        //横向滚动不需要初始化
+        // mui('.mui-scroll-wrapper').scroll({
+        //     deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+        // });
     }
 }
 </script>
@@ -72,6 +73,40 @@ export default {
     .photoCategory-contanier{
        a{
            text-decoration: none;
+       }
+       .photo-list{
+           list-style: none;
+           margin: 0;
+           padding: 10px;
+           padding-bottom: 0;
+           width: 100%;
+           li{
+                background-color: #ccc;
+                text-align: center;
+                margin-bottom: 10px;
+                box-shadow: 0 0 9px #999;
+                position: relative;
+                width: 100%;
+                img{
+                    width: 100%;
+                    height:auto;
+                    vertical-align: middle;
+                }
+                .info{
+                    color: #fff;
+                    text-align: left;
+                    position: absolute;
+                    bottom: 0;
+                    background-color: rgba(0,0,0,.4);
+                    max-height: 84px;
+                    .info-title{
+                        font-size: 14px;
+                    }
+                    .info-body{
+                        font-size: 13px;
+                    }
+                }
+           }
        }
     }
 </style>

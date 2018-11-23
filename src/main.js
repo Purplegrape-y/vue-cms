@@ -7,6 +7,26 @@ import router from './router'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
+//引入vue-lazylad模块
+import VueLazyload from 'vue-lazyload'
+ 
+Vue.use(VueLazyload)
+
+//导入图片预览组件
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
+// Vue.use(VuePreview, {
+//   mainClass: 'pswp--minimal--dark',
+//   barsSize: {top: 0, bottom: 0},
+//   captionEl: false,
+//   fullscreenEl: false,
+//   shareEl: false,
+//   bgOpacity: 0.85,
+//   tapToClose: true,
+//   tapToToggleControls: false
+// })
+
+
 //设置接口跟路径
 Vue.http.options.root = 'http://www.lovegf.cn:8899/';
 //设置表单数据提交格式
@@ -33,7 +53,7 @@ Vue.component(Button.name, Button)
 import './lib/mui/css/mui.css'
 // 导入扩展图标样式
 import './lib/mui/css/icons-extra.css'
-import mui from './lib/mui/js/mui.js'
+
 
 //引入自己的样式
 import './common/css/base.css'
