@@ -1,15 +1,12 @@
 <template>
   <div class="home-container">
     <!-- 轮播图 -->
-    <mt-swipe :auto="4000">
+    <!-- <mt-swipe :auto="4000">
       <mt-swipe-item v-for="item in bannerList" :key="item.img">
         <a :href="item.url"><img :src="item.img" alt="" /> </a>
       </mt-swipe-item>
-      <!--
-        <mt-swipe-item>2</mt-swipe-item>
-        <mt-swipe-item>3</mt-swipe-item>
-      -->
-    </mt-swipe>
+    </mt-swipe> -->
+    <swipe :bannerList="bannerList"></swipe>
 
     <!-- 六宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -56,6 +53,7 @@
 
 <script>
   import { Toast } from "mint-ui";
+  import swipe from '../../components/swipe/'
 
   export default {
     data() {
@@ -82,6 +80,9 @@
             }
           });
       }
+    },
+    components:{
+      swipe
     }
   };
 </script>
