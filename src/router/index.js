@@ -9,6 +9,7 @@ import newInfoComponent from '../page/new/newInfo'
 import photoCategoryComponent from '../page/photo/photoCategory'
 import photoInfoComponent from '../page/photo/photoInfo'
 import goodsListComponent from '../page/goods/goodsList'
+import goodsInfoComponent from '../page/goods/goodsInfo'
 Vue.use(Router)
 
 export default new Router({
@@ -23,6 +24,7 @@ export default new Router({
     {path:'/home/photoCategory',component:photoCategoryComponent},
     {path:'/home/photoInfo/:cateid',component:photoInfoComponent},
     {path:'/home/goodsList',component:goodsListComponent},
+    {path:'/home/goodsinfo/:id',component:goodsInfoComponent}
   ],
   linkActiveClass:'mui-active'
 })

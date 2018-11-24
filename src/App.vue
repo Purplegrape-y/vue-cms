@@ -1,7 +1,9 @@
 <template>
   <div id="app-container">
     <!-- 头部区域 -->
-    <mt-header fixed title="cms"></mt-header>
+    <mt-header fixed title="cms">
+        <mt-button icon="back" slot="left" @click="back" v-show="flag">返回</mt-button>   
+    </mt-header>
 
     <!-- footer -->
     <nav class="mui-bar mui-bar-tab">
@@ -32,9 +34,24 @@
 </template>
 
 <script>
-// export default {
-//  
-// };
+export default {
+  data(){
+    return{
+      flag:false
+    }
+  },
+  updated(){
+      this.flag=!(this.$route.fullPath === "/home")
+      // console.log(1)
+      // console.log(this.$route.fullPath);
+      console.log(this)
+  },
+  methods:{
+    back(){
+      window.history.go(-1)  
+    },
+  }
+};
 </script>
 
 <style lang='less'>
@@ -82,6 +99,9 @@
       display: block;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+    .mint-header-button.is-left{
+      height: 100%;
     }
   }
 </style>
